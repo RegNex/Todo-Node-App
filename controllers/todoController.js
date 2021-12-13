@@ -3,12 +3,8 @@ const Todo = require('../models/Todo');
 async function addTodo(req, res){
   try {
 
-const body = req.body;
-const title = body.title;
-const description = body.description;
-const deadline = Date(body.deadline);
-
-
+const {title,description,deadline} = req.body;
+console.log(req.body);
     const newTodo = await Todo.create({
       title,
       description,
