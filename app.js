@@ -3,10 +3,12 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 const todoController = require('./controllers/todoController');
 const PORT = process.env.PORT || 3000;
 
 //routes api
+app.use(cors());
 app.use(express.json());
 app.get('/', function(req, res){
   res.status(200).json({message: 'Welcome to isaac todo api'});
@@ -20,7 +22,10 @@ app.get('/todos/:todoId', todoController.getTodoById);
 //listener
 app.listen(PORT, function(){
   console.log('Server has started to run');
-  mongoose.connect(process.env.DB_URL)
+  mongoose.connect(process.env.DB_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(function(){
     console.log('DB is connected');
   })
