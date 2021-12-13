@@ -10,13 +10,12 @@ const todoSchema = new mongoose.Schema({
     required: true
   },
   deadline: {
-    type: Date,
+    type: String,
     required: true
   },
   isCompleted: {
     type: Boolean,
-    default: false,
-    required: true
+    default: false
   }
 });
 
